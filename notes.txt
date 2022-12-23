@@ -1,0 +1,115 @@
+41 = A
+42 = B
+
+Team Names : 10 letters
+Player Names : 14 letters
+16 players per team
+
+Let's make it simple: 16 bytes for each name
+64+64*16 = 1088 (x440)
+
+x3C91		Kit of first team (7 bytes)
+x3C98		First team name
+x3CAD		First player of first team
+x3CC6		Second player of first team
+
+Gap between teams : x1AE
+Gap between team and 1st player : x15
+Gap between players: x19
+
+
+Jump when hitting "Finished"
+$8E/B4E1 22 B6 BC 00 JSL $00BCB6[$00:BCB6]   A:0000 X:00F6 Y:010B P:envMxdIzc
+
+...
+OR
+$8E/B344 22 4F C0 8E JSL $8EC04F[$8E:C04F]   A:0008 X:83B0 Y:0007 P:envmxdIzc
+OR
+$80/A1ED 22 32 B3 8E JSL $8EB332[$8E:B332]   A:3C33 X:00F2 Y:0007 P:envmxdIZc
+
+x21ED		22 32 B3 8E			22 00 F0 0F
+
+Low-rom banks
+00:8000		0000
+01:8000		8000
+02:8000		10000
+03:8000		18000
+0F:8000		78000
+0F:F000		7F000
+
+New thought: Just copy all the ram between x3C90 and xAB5F into SRAM
+Size required: x6ED0 (28368 bytes)
+
+New jump to x7F000 (it's at the end of the rom in some unused space)
+x734E1		22 B6 BC 00		22 00 F0 0F
+OR
+x73344		22 4F C0 8E		22 00 F0 0F
+
+Other jump 
+$00/9A60 5C 64 9A 80 JMP $809A64[$80:9A64]   A:8080 X:00F6 Y:0060 P:eNvmxdIzc
+$80/9A64 22 B3 CD 8E JSL $8ECDB3[$8E:CDB3]   A:8080 X:00F6 Y:0060 P:eNvmxdIzc
+
+
+
+Example of LDA absolute indexed
+$8E/C73B BF 67 C7 8E LDA $8EC767,x[$8E:C77D] A:0016 X:0016 Y:0103 P:envmxdIzC
+Example of STA absolute indexed
+$8E/B474 9F 08 C0 7E STA $7EC008,x[$7E:C008] A:001E X:0000 Y:010B P:envMxdIzc
+
+$01/FDD7 A2 00 00    LDX #$0000              A:837E X:FFFF Y:0006 P:envMxdIzC
+$01/FE61 E0 09 00    CPX #$0009              A:8EFA X:0009 Y:0017 P:envMxdIzc
+
+
+A9 60 6F    LDA #$6F60
+8F 00 00 70
+22 B6 BC 00
+
+REP #$20		C2 20
+SEP #$10		E2 10
+REP #$30		C2 30
+
+3C90 - 8000		4370
+
+CHANGE ROM TYPE
+x7FD6	01		01=ROM+RAM
+x7FD8	08		SRam size
+
+SAVE MARKER INTO RAM (arbitrarily x2812)
+A9 12 28
+9F 00 00 70
+
+SAVE TEAM CONFIG FROM RAM INTO SRAM
+C2 30
+A2 00 00
+A9 12 28
+9F 00 00 70
+E0 CF 6E
+F0 0D
+BF 90 3C 7E
+9F 10 00 70
+E8
+5C 0C F0 0F
+22 32 B3 8E
+6B
+
+$80/B4C1 22 32 B3 8E JSL $8EB332[$8E:B332]   A:FFFF X:FFFF Y:1FCE P:eNvmxdIzC
+New jump to x7F050
+x34C1		22 32 B3 8E		22 50 F0 0F
+
+LOAD SRAM INTO RAM
+22 32 B3 8E
+C2 30
+A2 00 00
+BF 00 00 70
+C9 12 28
+D0 12
+E0 CF 6E
+F0 0D
+BF 10 00 70
+9F 90 3C 7E
+E8
+5C 62 F0 0F
+6B
+
+$80/B4C1 22 32 B3 8E JSL $8EB332[$8E:B332]   A:FFFF X:FFFF Y:1FCE P:eNvmxdIzC
+
