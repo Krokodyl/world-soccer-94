@@ -14,7 +14,7 @@ The patch adds SRAM to the game.<br/>
 The first time the game is loaded it will fill the sram with xFF in 710000-717FFF<br/>
 and write some default bytes in x700000 (12 28). The bytes are just a marker to prevent subsequent loading from erasing the SRAM.
 The rest of the modifications change the RAM address for the team editing to the sram address 710000.<br/>
-Most emulators nowadays save the SRAM in a .srm file that can be edited with an hexadecimal editor:<br/>
+Most emulators nowadays save the SRAM in a .srm file that can be copied for backup or edited with an hexadecimal editor:<br/>
 
 ![a](./images/sram.jpg)
 
