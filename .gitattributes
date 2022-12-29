@@ -1,3 +1,4 @@
 *.bps binary
 *.zip binary
 *.data binary
+*.srm binary
