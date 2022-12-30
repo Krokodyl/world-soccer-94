@@ -44,9 +44,6 @@ File/ROM CRC32: AAE0A10<br/>
 Newest Version:<br>
 [Download World Soccer 94 - Road to Glory (USA) - Super Edit.zip](https://github.com/Krokodyl/world-soccer-94/raw/main/patch/World%20Soccer%2094%20-%20Road%20to%20Glory%20(USA)%20-%20Super%20Edit.zip)
 
-
-Old Version:<br>
-[Download World Soccer 94 - Road to Glory (USA) save on.zip](https://github.com/Krokodyl/world-soccer-94/raw/main/patch/World%20Soccer%2094%20-%20Road%20to%20Glory%20(USA)%20save%20on.zip)
 <p>
 Tested on snes9x-1.61-win32-x64 and bsnes v115
 </p>
